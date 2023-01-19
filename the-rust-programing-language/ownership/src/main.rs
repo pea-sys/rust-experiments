@@ -63,6 +63,72 @@ fn main() {
     } // r1はここでスコープを抜けるので、問題なく新しい参照を作ることができる
 
     let r2 = &mut s;
+    
+    //スライス型
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s); // word will get the value 5
+                               // wordの中身は、値5になる
+
+    s.clear(); // this empties the String, making it equal to ""
+               // Stringを空にする。つまり、""と等しくする
+
+    // word still has the value 5 here, but there's no more string that
+    // we could meaningfully use the value 5 with. word is now totally invalid!
+    // wordはまだ値5を保持しているが、もうこの値を正しい意味で使用できる文字列は存在しない。
+    // wordは今や完全に無効なのだ！
+
+    //文字列スライス
+    let s = String::from("hello world");
+
+    let hello = &s[0..5];
+    let world = &s[6..11];
+    
+    println!("{} {}",hello,world);
+
+    let s = String::from("hello");
+
+    let slice_a = &s[0..2];
+    let slice_b = &s[..2];
+    println!("{} {}",slice_a,slice_b);
+
+    let s = String::from("hello");
+
+    let len = s.len();
+
+    let slice_a = &s[3..len];
+    let slice_b = &s[3..];
+    println!("{} {}",slice_a,slice_b);
+
+    let s = String::from("hello");
+
+    let len = s.len();
+
+    let slice_a = &s[0..len];
+    let slice_b = &s[..];
+    println!("{} {}",slice_a,slice_b);
+
+    let my_string = String::from("hello world");
+
+    // first_word works on slices of `String`s
+    // first_wordは`String`のスライスに対して機能する
+    let word = first_word(&my_string[..]);
+
+    let my_string_literal = "hello world";
+
+    // first_word works on slices of string literals
+    // first_wordは文字列リテラルのスライスに対して機能する
+    let word = first_word(&my_string_literal[..]);
+
+    // Because string literals *are* string slices already,
+    // this works too, without the slice syntax!
+    // 文字列リテラルは「それ自体すでに文字列スライスなので」、
+    // スライス記法なしでも機能するのだ！
+    let word = first_word(my_string_literal);
+
+    let a = [1, 2, 3, 4, 5];
+
+    let slice = &a[1..3];
 }
 
 fn takes_ownership(some_string: String) { // some_stringがスコープに入る。
@@ -92,4 +158,16 @@ fn calculate_length(s: &String) -> usize {
 }
 fn change(some_string: &mut String) {
     some_string.push_str(", world");
+}
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
