@@ -1,0 +1,11 @@
+[package]
+name = "publishing_to_crates_io"
+version = "0.2.0"
+edition = "2021"
+description = "test publishing_to_crates_io"
+license = "MIT OR Apache-2.0"
+authors = ["pea-sys <you@example.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
