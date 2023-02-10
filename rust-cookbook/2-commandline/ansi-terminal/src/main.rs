@@ -1,4 +1,3 @@
-extern crate ansi_term;
 
 use ansi_term::Colour;
 use ansi_term::Style;

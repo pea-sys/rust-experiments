@@ -1,4 +1,3 @@
-extern crate rand;
 
 use rand::distributions::{Distribution, Uniform, Standard};
 use rand::Rng;
