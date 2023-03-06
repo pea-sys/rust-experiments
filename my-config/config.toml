@@ -1,0 +1,5 @@
+[cargo-new]
+vcs = "none"              # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
+
+[term]
+verbose = true        # whether cargo provides verbose output
