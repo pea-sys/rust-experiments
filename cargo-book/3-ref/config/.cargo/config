@@ -1,0 +1,48 @@
+paths = ["/Users/user/projects/cargo-book/3-ref/config"] # path dependency overrides
+
+[alias]     # command aliases
+b = "build"
+c = "check"
+t = "test"
+r = "run"
+rr = "run --release"
+recursive_example = "rr --example recursions"
+space_example = ["run", "--release", "--", "\"command list\""]
+
+[build]
+jobs = 4                      # number of parallel jobs, defaults to # of CPUs
+rustc = "rustc"               # the rust compiler tool
+rustdoc = "rustdoc"           # the doc generator tool
+incremental = true            # whether or not to enable incremental compilation
+
+
+[doc]
+browser = "chromium"          # browser to use with `cargo doc --open`,
+                              # overrides the `BROWSER` environment variable
+
+[cargo-new]
+vcs = "none"              # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
+
+[http]
+debug = false               # HTTP debugging
+proxy = "host:port"         # HTTP proxy in libcurl format
+ssl-version.max = "tlsv1.3" # maximum TLS version
+ssl-version.min = "tlsv1.1" # minimum TLS version
+timeout = 30                # timeout for each HTTP request, in seconds
+low-speed-limit = 10        # network timeout threshold (bytes/sec)
+cainfo = "cert.pem"         # path to Certificate Authority (CA) bundle
+check-revoke = true         # check for SSL certificate revocation
+multiplexing = true         # HTTP/2 multiplexing
+user-agent = "…"            # the user-agent header
+
+[net]
+retry = 2                   # network retries
+git-fetch-with-cli = true   # use the `git` executable for git operations
+offline = true              # do not access the network
+
+[term]
+quiet = false          # whether cargo output is quiet
+verbose = true       # whether cargo provides verbose output
+color = 'auto'         # whether cargo colorizes output
+progress.when = 'auto' # whether cargo shows progress bar
+progress.width = 80    # width of progress bar

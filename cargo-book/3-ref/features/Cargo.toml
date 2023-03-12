@@ -1,0 +1,27 @@
+[package]
+name = "features"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gif = { version = "0.11.1", optional = true }
+ravif = { version = "0.6.3", optional = true }
+rgb = { version = "0.8.25", optional = true }
+serde = { version = "1.0.118", features = ["derive"] , optional = true}
+flate2 = { version = "1.0.3", default-features = false, features = ["zlib"] }
+jpeg-decoder = { version = "0.1.20", default-features = false }
+
+[features]
+# Defines a feature named `webp` that does not enable any other features.
+default = ["ico", "webp"]
+bmp = []
+png = []
+ico = ["bmp", "png"]
+webp = []
+gif = ["dep:gif"]
+avif = ["dep:ravif", "dep:rgb"]
+# Enables parallel processing support by enabling the "rayon" feature of jpeg-decoder.
+parallel = ["jpeg-decoder/rayon"]
+serde = ["dep:serde", "rgb?/serde"]
